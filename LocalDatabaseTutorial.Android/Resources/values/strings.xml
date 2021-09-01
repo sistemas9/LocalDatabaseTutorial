@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <string name="AgregarGuiso">Agregar Guiso</string>
+  <string name="AgregarGuisoDesc">Aqui podra agregar o modifcar guisos</string>
+  <string name="AgregarComanda">Empezar Comanda</string>
+  <string name="AgregarComandaDesc">Aqui podra empezar una comanda para clientes</string>
+</resources>

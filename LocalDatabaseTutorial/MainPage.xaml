@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalDatabaseTutorial.MainPage"
+             xmlns:local1="clr-namespace:LocalDatabaseTutorial">
+    <StackLayout Margin="20,35,20,20" BackgroundColor="#F1C40F">
+        <Label Text="Agregar Guisos"
+               HorizontalTextAlignment="Center"
+               FontSize="40"/>
+        <Entry x:Name="GuisoEntry"
+               Placeholder="Introduzca el guiso" />
+        <Entry x:Name="PrecioEntry"
+               Placeholder="Introduzca el precio" />
+        <Button Text="Agregar"
+                Clicked="OnButtonClicked" />
+        <StackLayout Orientation="Horizontal">
+            <ImageButton Source="@drawable/edit_button"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         Clicked="UpdateGuiso">
+            </ImageButton>
+            <Label Text="Editar"
+                         TextColor="Black"
+                         FontSize="Small"
+                         WidthRequest="70"/>
+            <ImageButton Source="@drawable/delete_button"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         Clicked="DeleteGuiso">
+            </ImageButton>
+            <Label Text="Eliminar"
+                         TextColor="Black"
+                         FontSize="Small"
+                         WidthRequest="70"/>
+        </StackLayout>
+        <BoxView BackgroundColor="Black"
+                HeightRequest="1"/>
+        <StackLayout Orientation="Horizontal" BackgroundColor="#5D6D7E">
+            <BoxView BackgroundColor="Black"
+                    WidthRequest="1"/>
+            <Label Text="Guiso "
+                    FontSize="Large" 
+                    HorizontalOptions="StartAndExpand"
+                   WidthRequest="150"
+                   TextColor="White"/>
+            <BoxView BackgroundColor="Black"
+                    WidthRequest="1"/>
+            <Label Text="Precio "
+                    FontSize="Large" 
+                    HorizontalOptions="StartAndExpand"
+                   WidthRequest="100"
+                   TextColor="White"/>
+            <BoxView BackgroundColor="Black"
+                    WidthRequest="1"/>
+        </StackLayout>
+        <CollectionView x:Name="collectionView"
+                        SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="2">
+                        <StackLayout Padding="1,1,1,1">
+                            <BoxView BackgroundColor="Black"
+                                    HeightRequest="1"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" x:Name="st1">
+                            <BoxView BackgroundColor="Black"
+                                    WidthRequest="1"/>
+                            <Entry  x:Name="GuisoUPDEntry"
+                                    Text="{Binding Guiso}"
+                                    HorizontalOptions="StartAndExpand"
+                                    WidthRequest="100"
+                                    IsEnabled="False"
+                                    Placeholder="Introduzca el Guiso" />
+                            <BoxView BackgroundColor="Black"
+                                    WidthRequest="1"/>
+                            <Entry Text="$"
+                                   TextColor="Black"
+                                   WidthRequest="50"
+                                   IsEnabled="False"
+                                   HorizontalTextAlignment="End"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="Small"/>
+                            <Entry  x:Name="PrecioUPDEntry"
+                                    Text="{Binding Precio}"
+                                    TextColor="Black"
+                                    IsEnabled="True"
+                                    FontSize="Small"
+                                    HorizontalTextAlignment="Start"
+                                    HorizontalOptions="StartAndExpand"
+                                    WidthRequest="200"
+                                    Placeholder="Introduzca el Precio" />
+                            <BoxView BackgroundColor="Black"
+                                    WidthRequest="1"/>
+                        </StackLayout>
+                        <StackLayout Padding="1,1,1,1">
+                            <BoxView BackgroundColor="Black"
+                                    HeightRequest="1"/>
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
