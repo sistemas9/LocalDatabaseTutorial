@@ -7,6 +7,7 @@ namespace LocalDatabaseTutorial
   public partial class App : Application
   {
     static Database database;
+    static DatabaseCarrito databaseCarrito;
 
     public static Database Database
     {
@@ -17,6 +18,18 @@ namespace LocalDatabaseTutorial
           database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Guisos.db3"));
         }
         return database;
+      }
+    }
+
+    public static DatabaseCarrito DatabaseCarrito
+    {
+      get
+      {
+        if (databaseCarrito == null)
+        {
+          databaseCarrito = new DatabaseCarrito(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Carrito.db3"));
+        }
+        return databaseCarrito;
       }
     }
 

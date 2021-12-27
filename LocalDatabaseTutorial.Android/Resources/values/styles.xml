@@ -15,10 +15,10 @@
          which is used to tint widgets -->
     <!--<item name="colorAccent">#FF4081</item>-->
   </style>
-  <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="SplashTheme">
     <item name="android:windowBackground">@drawable/logo_sazon</item>
     <item name="android:windowNoTitle">true</item>
-    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowFullscreen">false</item>
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowActionBar">true</item>
   </style>

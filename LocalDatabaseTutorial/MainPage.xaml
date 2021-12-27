@@ -11,6 +11,9 @@
                Placeholder="Introduzca el guiso" />
         <Entry x:Name="PrecioEntry"
                Placeholder="Introduzca el precio" />
+        <Picker Title="Seleccione el tipo de guiso"
+                x:Name="TipoGuiso">
+        </Picker>
         <Button Text="Agregar"
                 Clicked="OnButtonClicked" />
         <StackLayout Orientation="Horizontal">

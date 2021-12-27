@@ -3,10 +3,184 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LocalDatabaseTutorial.ComandasPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="stackPpalSelection"
+                         Orientation="Horizontal"
+                         VerticalOptions="Start"
+                         HeightRequest="300"
+                         Padding="0,20,0,0"
+                         BackgroundColor="#CCC">
+                <StackLayout Orientation="Horizontal"
+                             WidthRequest="80"
+                             x:Name="stackListaTipos">
+                    <!--<Label 
+                        Text="aqui va la lista"></Label>-->
+                    <Picker x:Name="TipoGuiso"
+                            WidthRequest="70"
+                            HeightRequest="50"
+                            FontSize="Small"
+                            VerticalOptions="Start"
+                            SelectedIndexChanged="LoadGuisos"
+                            Title="Guiso"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="@drawable/chevron_left"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Start"
+                                 Clicked="HideListaTipos">
+                    </ImageButton>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             x:Name="stackListaGuisos"
+                             IsVisible="false">
+                    <CollectionView x:Name="ListaGuisos"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnSelectionListaGuisos">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label  x:Name="Guiso"
+                                            Text="{Binding Guiso}"
+                                            TextColor="Black"
+                                            FontSize="Small"
+                                            HorizontalTextAlignment="Start"
+                                            Padding="0,15,0,0"
+                                            HorizontalOptions="StartAndExpand"
+                                            WidthRequest="220"/>
+                                    <Label  x:Name="Precio"
+                                            Text="{Binding Precio, StringFormat='${0:F0}'}"
+                                            TextColor="Black"
+                                            FontSize="Small"
+                                            Padding="0,15,0,0"
+                                            HorizontalTextAlignment="Start"
+                                            HorizontalOptions="StartAndExpand"
+                                            WidthRequest="40"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Entry  x:Name="Cantidad"
+                            Text=""
+                            TextColor="Black"
+                            IsEnabled="True"
+                            FontSize="Small"
+                            WidthRequest="60"
+                            HeightRequest="50"
+                            VerticalOptions = "Start"
+                            VerticalTextAlignment="Start"
+                            Placeholder="Cant."/>
+                </StackLayout>                
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="@drawable/chevron_right"
+                                 x:Name="btnListaGuisos"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Start"
+                                 Clicked="HideListaGuisos">
+                    </ImageButton>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="StartAndExpand"
+                             BackgroundColor="#DC7633"
+                             WidthRequest="450">
+                <Label Text="Guiso"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       TextColor="White"
+                       WidthRequest="200"/>
+                <Label Text="Precio"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       TextColor="White"
+                       WidthRequest="80"
+                       HorizontalTextAlignment="Start"/>
+                <Label Text="Cant."
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       TextColor="White"
+                       WidthRequest="70"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Monto"
+                       FontAttributes="Bold"
+                       FontSize="20"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       WidthRequest="100"/>
+            </StackLayout>
+            <StackLayout x:Name="stackPPalDetalle"
+                         Orientation="Horizontal"
+                         VerticalOptions="StartAndExpand">
+                <CollectionView x:Name="Carrito"
+                                SelectionMode="Single"
+                                SelectionChanged="DeleteCarritoLinea">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <Label  x:Name="Guiso"
+                                        Text="{Binding Guiso}"
+                                        TextColor="Black"
+                                        FontSize="Small"
+                                        HorizontalTextAlignment="Start"
+                                        HorizontalOptions="StartAndExpand"
+                                        MinimumWidthRequest="170"
+                                        WidthRequest="170"/>
+                                <Label  x:Name="Precio"
+                                        Text="{Binding Precio, StringFormat='${0:F0}'}"
+                                        TextColor="Black"
+                                        FontSize="Small"
+                                        HorizontalTextAlignment="Start"
+                                        HorizontalOptions="StartAndExpand"
+                                        WidthRequest="70"/>
+                                <Label  x:Name="Cantidad"
+                                        Text="{Binding Cantidad}"
+                                        TextColor="Black"
+                                        FontSize="Small"
+                                        HorizontalTextAlignment="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        WidthRequest="70"/>
+                                <Label  x:Name="Monto"
+                                        Text="{Binding Monto, StringFormat='${0:F0}'}"
+                                        TextColor="Black"
+                                        FontSize="Small"
+                                        HorizontalTextAlignment="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        WidthRequest="100"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout x:Name="stackPpalTotales"
+                         Orientation="Vertical"
+                         VerticalOptions="Center"
+                         HeightRequest="150"
+                         BackgroundColor="CornflowerBlue">
+                <CollectionView x:Name="Totales">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal"
+                                         Padding="10"
+                                         HorizontalOptions="CenterAndExpand">
+                                <Label Text="Total: "
+                                       HorizontalOptions="EndAndExpand"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="End"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="30"
+                                       WidthRequest="100"></Label>
+                                <Label x:Name="Total"
+                                       WidthRequest="200"
+                                       FontSize="50"
+                                       TextColor="White"
+                                       HorizontalOptions="End"
+                                       Text="{Binding Total, StringFormat='${0:F0}'}"></Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>              
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

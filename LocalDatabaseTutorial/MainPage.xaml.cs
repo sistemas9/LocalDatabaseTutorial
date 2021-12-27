@@ -25,6 +25,7 @@ namespace LocalDatabaseTutorial
     {
       base.OnAppearing();
       collectionView.ItemsSource = await App.Database.GetPeopleAsync();
+      TipoGuiso.ItemsSource = ListaTipos.TipoGuisos.ToList();
     }
 
     async void OnButtonClicked(object sender, EventArgs e)
@@ -34,14 +35,14 @@ namespace LocalDatabaseTutorial
         await App.Database.SavePersonAsync(new Guisos
         {
           Guiso = GuisoEntry.Text,
-          Precio = double.Parse(PrecioEntry.Text)
+          Precio = double.Parse(PrecioEntry.Text),
+          Tipo = TipoGuiso.SelectedItem.ToString()
         });
         
         GuisoEntry.Text = PrecioEntry.Text = string.Empty;
         collectionView.ItemsSource = await App.Database.GetPeopleAsync();
       }
     }
-
     async void UpdateGuiso(object sender, EventArgs e)
     {
       if (collectionView.SelectedItem != null)

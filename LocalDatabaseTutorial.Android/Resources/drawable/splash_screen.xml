@@ -4,8 +4,7 @@
     <color android:color="@color/splash_background"></color>
   </item>
   <item>
-    <bitmap android:src="@drawable/logo_sazon" 
-            android:tileMode="disabled"
-            android:gravity="center" />
+        <bitmap android:src="@drawable/logo_sazon"
+                android:gravity="center"/>
   </item>
 </layer-list>
